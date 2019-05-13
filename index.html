@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ConSearch</title>
+</head>
+<body>
+    
+    <h1 style="text-align: center;">ConSearch</h1>
+
+    <!-- Artist Select Box -->
+    <form id="artists-form">
+
+        <!-- Label for Text Box -->
+        <label for="artist-input">Choose Your Artist</label>
+
+        <!-- Text Input Box -->
+        <input type="text" id="artist-input"><br>
+
+        <!-- Submit Button -->
+        <input id="select-artist" type="submit" value="GO!">
+
+    </form>
+    
+    <!-- Artist Information -->
+    <div id="artist-div"></div>
+
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+
+<script>
+    
+    function searchBandsInTown(artist)
+    {
+        // Querying the bandsintown api for the selected artist, the
+        // ?app_id parameter is required, but can equal anything
+        var queryURL = "https://rest.bandsintown.com/artists/" + artist +
+                        "?app_id=codingbootcamp";
+        $.ajax({
+
+            url: queryURL,
+            method: "GET"
+
+        }).done(function(response) {
+            
+            // Printing the entire object to console
+            console.log(response);
+
+            // Constructing HTML containing the artist information
+            
+
+        })
+
+
+
+    }
+
+</script>
+
+</html>
