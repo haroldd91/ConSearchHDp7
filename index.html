@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ConSearch</title>
 </head>
-<body>
+<body style="background-color:rgba(124, 104, 238, 0.624)">
     
-    <h1 style="text-align: center;">ConSearch</h1>
+    <h1 style="text-align: center; text-decoration-line: underline; color:lavender">ConSearch</h1>
 
     <!-- Artist Select Box -->
-    <form id="artists-form">
+    <form style="color:rgb(40, 67, 92)" id="artists-form">
 
         <!-- Label for Text Box -->
         <label for="artist-input">Choose Your Artist</label>
@@ -53,13 +53,35 @@
             console.log(response);
 
             // Constructing HTML containing the artist information
-            
+            var artistName = $("<h1>").text(response.name);
+            var artistUrl = $("<a>").attr("href", response.url).append(artistName);
+            var artistImage = $("<img>").attr("src", response.thumb_url);
+            var trackerCount = $("<h2>").text(response.tracker_count +
+                                " fans tracking this artist");
+            var upcomingEvents = $("<h2>").text(response.upcoming_event_count +  
+                                " upcoming events");
+            var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
 
-        })
+            // Empty the contents of the artist-div, append the new artist content
+            $("#artists-div").empty();
+            $("#artist-div").append(artistUrl, artistImage, trackerCount, upcomingEvents, goToArtist);
 
-
-
+        });
     }
+
+    // Event handler for user clicking the select-artist button
+    $("#select-artist") .on("click", function(event) {
+
+        // Preventing the button from trying to submit the form
+        event.preventDefault();
+
+        // Storing the artist name
+        var artist = $("#artist-input").val().trim();
+
+        // Running the searchBandsInTown function (passing in the artist as an argument)
+        searchBandsInTown(artist);
+
+    });
 
 </script>
 
